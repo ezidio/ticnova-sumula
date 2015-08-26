@@ -3,10 +3,7 @@ package br.com.ticnova.sumula.domain.sumula;
 import br.com.ticnova.sumula.domain.clube.Clube;
 import br.com.ticnova.sumula.domain.jogador.Jogador;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,22 +16,27 @@ public class Gol {
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotNull(message = "O tempo do gol deve ser informado")
+    @Column(nullable = false)
     private Integer tempo;
 
-    @NotNull
     @ManyToOne
     private Sumula sumula;
 
-    @NotNull
+    @NotNull(message = "O jogador que marcou o gol deve ser informado")
     @ManyToOne
+    @Column(nullable = false)
     private Jogador jogador;
 
     @ManyToOne
+    @NotNull(message = "O clube a qual foi o gol deve ser informado")
+    @Column(nullable = false)
     private Clube clube;
 
-    @NotNull
-    private String tipo;
+    @NotNull(message = "O tipo de gol deve ser informado.")
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TipoDeGol tipo;
 
     public Long getId() {
         return id;
@@ -76,11 +78,11 @@ public class Gol {
         this.clube = clube;
     }
 
-    public String getTipo() {
+    public TipoDeGol getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoDeGol tipo) {
         this.tipo = tipo;
     }
 }

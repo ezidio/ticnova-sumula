@@ -11,6 +11,7 @@ import java.util.List;
 public interface JogadorRepository extends JpaRepository<Jogador, Long> {
 
     List<Jogador> findByClube(Clube clube);
+
     Jogador getByClubeAndApelido(Clube clube, String apelido);
 
 }

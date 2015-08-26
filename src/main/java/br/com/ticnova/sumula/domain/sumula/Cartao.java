@@ -3,10 +3,7 @@ package br.com.ticnova.sumula.domain.sumula;
 import br.com.ticnova.sumula.domain.clube.Clube;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,34 +16,30 @@ public class Cartao {
     @GeneratedValue
     private Long id;
 
-    @NotEmpty
-    private String tipo;
+    @NotNull(message = "O tipo do cartão deve ser informado.")
+    @Enumerated(EnumType.STRING)
+    private TipoCartao tipo;
 
     @NotNull
     @ManyToOne
     private Sumula sumula;
 
-    @NotNull
+    @NotNull(message = "O jogador que levou o cartão deve ser informado")
     @ManyToOne
     private JogadorRelacionado jogador;
 
-    @NotEmpty
+    @NotEmpty(message = "O motivo do cartão deve ser informado.")
     private String motivo;
-
-    @NotNull
-    @ManyToOne
-    private Clube clube;
-
 
     public Long getId() {
         return id;
     }
 
-    public String getTipo() {
+    public TipoCartao getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoCartao tipo) {
         this.tipo = tipo;
     }
 
@@ -74,11 +67,4 @@ public class Cartao {
         this.motivo = motivo;
     }
 
-    public Clube getClube() {
-        return clube;
-    }
-
-    public void setClube(Clube clube) {
-        this.clube = clube;
-    }
 }

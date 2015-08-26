@@ -50,4 +50,12 @@ public class Campeonato {
     public void setInicio(Date inicio) {
         this.inicio = inicio;
     }
+
+    public Date getFim() {
+        return fim;
+    }
+
+    public void setFim(Date fim) {
+        this.fim = fim;
+    }
 }

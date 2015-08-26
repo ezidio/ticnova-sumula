@@ -28,7 +28,6 @@ public class Clube {
     @NotEmpty
     private String estado;
 
-
     public Clube(String nome, String estado) {
         this.nome = checkNotNull(emptyToNull(nome), "O nome deve ser informado");
         this.estado = checkNotNull(emptyToNull(estado), "O estado deve ser informado");

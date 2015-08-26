@@ -4,6 +4,7 @@ import br.com.ticnova.sumula.domain.campeonato.Campeonato;
 import br.com.ticnova.sumula.domain.estadio.Estadio;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -18,19 +19,30 @@ public class Sumula {
     private Long id;
 
     @ManyToOne
+    @NotNull(message = "O campeonato deve ser informado")
+    @Column(nullable = false)
     private Campeonato campeonato;
 
+    @NotNull(message = "A rodada do campeonato deve ser informado")
     private Integer rodada;
 
+    @NotNull(message = "A data deve ser informada")
+    @Column(nullable = false)
     private Date data;
 
     @ManyToOne
+    @NotNull(message = "O estádio deve ser informado")
+    @Column(nullable = false)
     private Estadio estadio;
 
     @ManyToOne
+    @NotNull(message = "A relação do time visitante deve ser informada")
+    @Column(nullable = false)
     private Relacao visitante;
 
     @ManyToOne
+    @NotNull(message = "A relação do time da casa deve ser informada")
+    @Column(nullable = false)
     private Relacao casa;
 
     @OneToMany(mappedBy = "sumula")

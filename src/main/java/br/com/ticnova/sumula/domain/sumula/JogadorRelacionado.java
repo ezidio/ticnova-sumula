@@ -3,6 +3,7 @@ package br.com.ticnova.sumula.domain.sumula;
 import br.com.ticnova.sumula.domain.jogador.Jogador;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,10 +22,13 @@ public class JogadorRelacionado {
     private Long id;
 
     @ManyToOne
+    @NotEmpty(message = "O o jogador deve ser informado")
     private Jogador jogador;
 
+    @NotEmpty(message = "O número do jogador deve ser informado")
     private Integer numero;
 
+    @NotEmpty(message = "O tipo de escalação deve ser informado")
     private String tipoEscalacao;
 
     @ManyToOne
